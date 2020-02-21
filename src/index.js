@@ -1,1 +1,4 @@
-console.log("ok")
+import React from "react";
+import ReactDOM from "react-dom";
+
+ReactDOM.render(<h1>React config</h1>, document.getElementById("app"));
