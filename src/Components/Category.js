@@ -26,5 +26,6 @@ const Image = styled.img`
 export const Category = ({ cover = DEFAULT_IMAGE, path, emoji = '?' }) => (
   <Anchor href={path}>
     <Image src={cover} alt='pet' />
+    {emoji}
   </Anchor>
 )
