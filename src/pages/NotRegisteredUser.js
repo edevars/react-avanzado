@@ -1,9 +1,9 @@
 import React from 'react'
 import { Consumer } from '../Context'
-import { UserForm } from '../Components/UserForm'
+import { LoginForm } from '../Components/LoginForm'
 
 export const NotRegisteredUser = () => (
   <Consumer>
-    {({ activateAuth }) => <UserForm onSubmit={activateAuth} />}
+    {({ activateAuth }) => <LoginForm onSubmit={activateAuth} />}
   </Consumer>
 )

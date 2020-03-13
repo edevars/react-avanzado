@@ -8,6 +8,7 @@ import { NavBar } from './Components/Navbar'
 import { User } from './pages/User'
 import { Favs } from './pages/Favs'
 import { NotRegisteredUser } from './pages/NotRegisteredUser'
+import { SignIn } from './pages/SignIn'
 import { Consumer } from './Context'
 
 export const App = () => {
@@ -31,6 +32,7 @@ export const App = () => {
             <Router>
               <NotRegisteredUser path='/favs' />
               <NotRegisteredUser path='/user' />
+              <SignIn path='/signin' />
             </Router>
           )}
       </Consumer>
