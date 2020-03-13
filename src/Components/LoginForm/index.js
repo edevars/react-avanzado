@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from '@reach/router'
-
+import { useForm } from '../../hooks/useForm'
 import {
   Title,
   Subtitle,
@@ -12,24 +12,15 @@ import {
 } from './styles'
 
 export const LoginForm = ({ onSubmit }) => {
-  const [form, useForm] = useState({
+  // eslint-disable-next-line no-unused-vars
+  const [form, handleFormChange] = useForm({
     email: '',
     password: ''
   })
-
-  const handleFormChange = event => {
-    useForm({
-      ...form,
-      [event.target.name]: event.target.value
-    })
-  }
-
   return (
     <>
       <Title>Iniciar sesión</Title>
-      <Subtitle>
-        Disfruta de tus mascotas favoritas ahora mismo
-      </Subtitle>
+      <Subtitle>Disfruta de tus mascotas favoritas ahora mismo</Subtitle>
       <ImageWrapper>
         <img
           src='https://images.fineartamerica.com/images/artworkimages/medium/2/galaxy-cat-olga-shvartsur-transparent.png'
@@ -55,9 +46,9 @@ export const LoginForm = ({ onSubmit }) => {
           onChange={handleFormChange}
         />
         <Paragraph>
-          ¿Aún no tienes una cuenta? <br />{' '}
+          ¿Aún no tienes una cuenta? <br />
           <Link to='/signin'>
-            <span>Registrate aquí</span>
+            <span>Regístrate aquí</span>
           </Link>
         </Paragraph>
       </Form>

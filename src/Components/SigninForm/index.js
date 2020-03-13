@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from '@reach/router'
+import { useForm } from '../../hooks/useForm'
 
 import {
   Title,
@@ -12,18 +13,12 @@ import {
 } from './styles'
 
 export const SigninForm = () => {
-  const [form, useForm] = useState({
+  // eslint-disable-next-line no-unused-vars
+  const [form, handleFormChange] = useForm({
     email: '',
     password: '',
     repeatPassword: ''
   })
-
-  const handleFormChange = event => {
-    useForm({
-      ...form,
-      [event.target.name]: event.target.value
-    })
-  }
 
   return (
     <>
