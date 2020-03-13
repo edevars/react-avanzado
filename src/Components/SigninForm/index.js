@@ -12,13 +12,16 @@ import {
   Paragraph
 } from './styles'
 
-export const SigninForm = () => {
-  // eslint-disable-next-line no-unused-vars
+export const SigninForm = ({ onSubmit, activateAuth }) => {
   const [form, handleFormChange] = useForm({
     email: '',
-    password: '',
-    repeatPassword: ''
+    password: ''
   })
+
+  const handleSubmit = event => {
+    event.preventDefault()
+    onSubmit(form)
+  }
 
   return (
     <>
@@ -32,7 +35,7 @@ export const SigninForm = () => {
           alt=''
         />
       </ImageWrapper>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Input
           type='email'
           name='email'
@@ -45,17 +48,7 @@ export const SigninForm = () => {
           placeholder='contraseña'
           onChange={handleFormChange}
         />
-        <Input
-          type='password'
-          name='repeatPassword'
-          placeholder='repetir contraseña'
-          onChange={handleFormChange}
-        />
-        <Submit
-          type='submit'
-          value='Registrarse'
-          onChange={handleFormChange}
-        />
+        <Submit type='submit' value='Registrarse' onChange={handleFormChange} />
         <Paragraph>
           ¿Ya tienes una cuenta? <br />{' '}
           <Link to='/favs'>
