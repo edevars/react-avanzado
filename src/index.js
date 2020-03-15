@@ -18,6 +18,7 @@ const client = new ApolloClient({
     })
   },
   onError: error => {
+    console.error(error)
     const { networkError } = error
     if (networkError && networkError.result.code === 'invalid token') {
       window.sessionStorage.removeItem('token')
