@@ -26,7 +26,7 @@ export const SigninForm = ({ onSubmit, error, disabled }) => {
   }
 
   useEffect(() => {
-    toast.error(error)
+    if (error) toast.error(error)
   }, [error])
 
   return (

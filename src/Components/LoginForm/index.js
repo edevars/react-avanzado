@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from '@reach/router'
+import { toast } from 'react-toastify'
 import { useForm } from '../../hooks/useForm'
+import { Loader } from '../General/Loader'
+
 import {
   Title,
   Subtitle,
@@ -11,12 +14,21 @@ import {
   Paragraph
 } from './styles'
 
-export const LoginForm = ({ onSubmit }) => {
-  // eslint-disable-next-line no-unused-vars
+export const LoginForm = ({ onSubmit, error, disabled }) => {
   const [form, handleFormChange] = useForm({
     email: '',
     password: ''
   })
+
+  const handleSubmit = event => {
+    event.preventDefault()
+    onSubmit(form)
+  }
+
+  useEffect(() => {
+    if (error) toast.error(error)
+  }, [error])
+
   return (
     <>
       <Title>Iniciar sesión</Title>
@@ -27,31 +39,35 @@ export const LoginForm = ({ onSubmit }) => {
           alt=''
         />
       </ImageWrapper>
-      <Form onSubmit={onSubmit}>
-        <Input
-          type='email'
-          name='email'
-          placeholder='e-mail'
-          onChange={handleFormChange}
-        />
-        <Input
-          type='password'
-          name='password'
-          placeholder='contraseña'
-          onChange={handleFormChange}
-        />
-        <Submit
-          type='submit'
-          value='iniciar sesión'
-          onChange={handleFormChange}
-        />
-        <Paragraph>
-          ¿Aún no tienes una cuenta? <br />
-          <Link to='/signin'>
-            <span>Regístrate aquí</span>
-          </Link>
-        </Paragraph>
-      </Form>
+      {disabled ? (
+        <Loader />
+      ) : (
+        <Form onSubmit={handleSubmit}>
+          <Input
+            type='email'
+            name='email'
+            placeholder='e-mail'
+            onChange={handleFormChange}
+          />
+          <Input
+            type='password'
+            name='password'
+            placeholder='contraseña'
+            onChange={handleFormChange}
+          />
+          <Submit
+            type='submit'
+            value='Registrarse'
+            onChange={handleFormChange}
+          />
+          <Paragraph>
+            ¿Ya tienes una cuenta? <br />{' '}
+            <Link to='/favs'>
+              <span>Inicia sesión aquí</span>
+            </Link>
+          </Paragraph>
+        </Form>
+      )}
     </>
   )
 }
