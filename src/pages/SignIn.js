@@ -12,8 +12,9 @@ export const SignIn = () => (
           const onSubmit = ({ email, password }) => {
             const input = { email, password }
             const variables = { input }
-            register({ variables }).then(() => {
-              activateAuth()
+            register({ variables }).then(({ data }) => {
+              const { signup } = data
+              activateAuth(signup)
               navigate('/favs')
             })
           }

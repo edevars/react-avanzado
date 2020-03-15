@@ -61,9 +61,9 @@ export const LoginForm = ({ onSubmit, error, disabled }) => {
             onChange={handleFormChange}
           />
           <Paragraph>
-            ¿Ya tienes una cuenta? <br />{' '}
-            <Link to='/favs'>
-              <span>Inicia sesión aquí</span>
+            ¿No tienes una cuenta? <br />{' '}
+            <Link to='/signin'>
+              <span>Registrate aquí</span>
             </Link>
           </Paragraph>
         </Form>
