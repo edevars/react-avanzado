@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from '@reach/router'
+import { toast } from 'react-toastify'
 import { useForm } from '../../hooks/useForm'
+import { Loader } from '../General/Loader'
 
 import {
   Title,
@@ -12,7 +14,7 @@ import {
   Paragraph
 } from './styles'
 
-export const SigninForm = ({ onSubmit, activateAuth }) => {
+export const SigninForm = ({ onSubmit, error, disabled }) => {
   const [form, handleFormChange] = useForm({
     email: '',
     password: ''
@@ -22,6 +24,10 @@ export const SigninForm = ({ onSubmit, activateAuth }) => {
     event.preventDefault()
     onSubmit(form)
   }
+
+  useEffect(() => {
+    toast.error(error)
+  }, [error])
 
   return (
     <>
@@ -35,27 +41,35 @@ export const SigninForm = ({ onSubmit, activateAuth }) => {
           alt=''
         />
       </ImageWrapper>
-      <Form onSubmit={handleSubmit}>
-        <Input
-          type='email'
-          name='email'
-          placeholder='e-mail'
-          onChange={handleFormChange}
-        />
-        <Input
-          type='password'
-          name='password'
-          placeholder='contraseña'
-          onChange={handleFormChange}
-        />
-        <Submit type='submit' value='Registrarse' onChange={handleFormChange} />
-        <Paragraph>
-          ¿Ya tienes una cuenta? <br />{' '}
-          <Link to='/favs'>
-            <span>Inicia sesión aquí</span>
-          </Link>
-        </Paragraph>
-      </Form>
+      {disabled ? (
+        <Loader />
+      ) : (
+        <Form onSubmit={handleSubmit}>
+          <Input
+            type='email'
+            name='email'
+            placeholder='e-mail'
+            onChange={handleFormChange}
+          />
+          <Input
+            type='password'
+            name='password'
+            placeholder='contraseña'
+            onChange={handleFormChange}
+          />
+          <Submit
+            type='submit'
+            value='Registrarse'
+            onChange={handleFormChange}
+          />
+          <Paragraph>
+            ¿Ya tienes una cuenta? <br />{' '}
+            <Link to='/favs'>
+              <span>Inicia sesión aquí</span>
+            </Link>
+          </Paragraph>
+        </Form>
+      )}
     </>
   )
 }

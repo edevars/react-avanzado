@@ -8,19 +8,25 @@ export const SignIn = () => (
   <Consumer>
     {({ activateAuth }) => (
       <RegisterMutation>
-        {register => {
+        {(register, { data, loading, error }) => {
           const onSubmit = ({ email, password }) => {
             const input = { email, password }
             const variables = { input }
-            register({ variables })
-              .then(() => {
-                activateAuth()
-                navigate('/favs')
-              })
-              .catch()
+            register({ variables }).then(() => {
+              activateAuth()
+              navigate('/favs')
+            })
           }
 
-          return <SigninForm onSubmit={onSubmit} />
+          const errorMsg = error && 'El usuario ya existe o hay algún problema.'
+
+          return (
+            <SigninForm
+              onSubmit={onSubmit}
+              error={errorMsg}
+              disabled={loading}
+            />
+          )
         }}
       </RegisterMutation>
     )}

@@ -10,11 +10,13 @@ import { Favs } from './pages/Favs'
 import { NotRegisteredUser } from './pages/NotRegisteredUser'
 import { SignIn } from './pages/SignIn'
 import { Consumer } from './Context'
+import { ToastContainer } from 'react-toastify'
 
 export const App = () => {
   return (
     <>
       <GlobalStyle />
+      <ToastContainer />
       <Logo />
       <Router>
         <Home path='/' />
