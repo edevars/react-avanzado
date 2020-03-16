@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { Router, Redirect } from '@reach/router'
+import { Helmet } from 'react-helmet'
 import { GlobalStyle } from './styles/GlobalStyle'
 import { Logo } from './Components/General/Logo'
 import { Home } from './pages/home'
@@ -17,6 +18,9 @@ export const App = () => {
   const { isAuth } = useContext(Context)
   return (
     <>
+      <Helmet>
+        <title>Petgram - Tu app de mascotas</title>
+      </Helmet>
       <GlobalStyle />
       <ToastContainer />
       <Logo />
